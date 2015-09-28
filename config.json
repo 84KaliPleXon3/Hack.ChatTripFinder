@@ -1,0 +1,17 @@
+{
+    "url": "wss://hack.chat/chat-ws:22",
+    "nick": "m4gnv5_bot",
+    "channel": "trips",
+    "waitTime": 20000,
+    "saveAfter": 50,
+    "logTorNotices": false,
+    "logTorWarnings": false,
+    "logErrors": false,
+    "ports": [
+        9050,
+        9051,
+        9052,
+        9053,
+        9054
+    ]
+}

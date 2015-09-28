@@ -1,0 +1,11 @@
+{
+  "name": "Hack.ChatTripFinder",
+  "version": "1.0.0",
+  "description": "Finds awesome trips for hack.chat",
+  "main": "./main.js",
+  "dependencies": {
+    "ws": "^0.7.2",
+    "tor-relay": "^0.0.2",
+    "socks-proxy-agent": "^2.0.0"
+  }
+}

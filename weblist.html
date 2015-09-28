@@ -1,0 +1,82 @@
+<html>
+    <body>
+        <!-- im bad at css -->
+
+        <center>
+            <input id="input" type="text" onchange="search(this.value);" value=".*" />
+            <br /><br />
+            <div id="output">Please wait...</div>
+            <br />
+            <button onclick="prev();">prev</button>
+            <input id="count" type="number" onchange="renderTrips();" value="10" />
+            <button onclick="next();">next</button>
+            <br />
+            <div id="stats"></div>
+        </center>
+
+        <script type="text/javascript">
+            var output = document.getElementById("output");
+            var input = document.getElementById("input");
+            var count = document.getElementById("count");
+            var stats = document.getElementById("stats");
+            var data;
+            var results;
+            var index = 0;
+
+            loadData();
+
+            function search(val)
+            {
+                var reg = new RegExp(val);
+                results = [];
+                index = 0;
+
+                for(var i = 0; i < data.length; i++)
+                {
+                    if(reg.test(data[i]))
+                        results.push(data[i]);
+                }
+                renderTrips();
+            }
+
+            function renderTrips()
+            {
+                var _count = parseInt(count.value) || 10;
+                output.innerHTML = "<p>" + results.slice(index, index + _count).join("<br />") + "</p>";
+            }
+
+            function prev()
+            {
+                var _count = parseInt(count.value) || 10;
+                if(index - _count > 0)
+                {
+                    index -= _count;
+                    renderTrips();
+                }
+            }
+            function next()
+            {
+                var _count = parseInt(count.value) || 10;
+                if(index + _count < results.length)
+                {
+                    index += _count;
+                    renderTrips();
+                }
+            }
+
+            function loadData()
+            {
+                var req = new XMLHttpRequest();
+                req.addEventListener("load", function()
+                {
+                    data = JSON.parse(this.responseText);
+                    results = data;
+                    search(input.value);
+                    stats.innerHTML = "total of " + data.length + " trips";
+                });
+                req.open("GET", "/data");
+                req.send();
+            }
+        </script>
+    </body>
+</html>
