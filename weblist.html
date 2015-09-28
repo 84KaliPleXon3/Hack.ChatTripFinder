@@ -43,6 +43,7 @@
             {
                 var _count = parseInt(count.value) || 10;
                 output.innerHTML = "<p>" + results.slice(index, index + _count).join("<br />") + "</p>";
+                stats.innerHTML = "showing trips " + index + " to " + (index + _count) + " of " + data.length;
             }
 
             function prev()
@@ -72,7 +73,6 @@
                     data = JSON.parse(this.responseText);
                     results = data;
                     search(input.value);
-                    stats.innerHTML = "total of " + data.length + " trips";
                 });
                 req.open("GET", "/data");
                 req.send();
