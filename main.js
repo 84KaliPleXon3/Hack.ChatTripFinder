@@ -103,8 +103,7 @@ function findTrip(port)
         {
             ws.close();
 
-            var time = (new Date().getTime() - startTime) / 1000;
-            var line = data.trip + "-" + password + "-" + (new Date().getTime()) + "\n";
+            var line = data.trip + " " + password + " " + (new Date().getTime()) + "\n";
             fs.appendFile("trips.txt", line, function(err)
             {
                 if(err && config.logErrors)

@@ -9,35 +9,15 @@ refresh();
 setInterval(refresh, 5 * 60 * 1000);
 function refresh()
 {
-    fs.readdir("./data", function(err, files)
+    fs.readFile("./trips.txt", function(err, content)
     {
-        if(err)
-            throw err;
-
         data = [];
-
-        for(var i = 0; i < files.length; i++)
+        stringData = false;
+        var trips = content.split("\n");
+        for(var i = 0; i < trips.length; i++)
         {
-            if(err)
-                throw err;
-
-            (function(file)
-            {
-                fs.readFile("./data/" + file, function(err, content)
-                {
-                    try
-                    {
-                        var fileData = JSON.parse(content);
-                        var trips = Object.keys(fileData);
-                        data = data.concat(trips);
-                        stringData = false;
-                    }
-                    catch(e)
-                    {
-                        console.log("failed parsing contents of file " + file + ": " + e.message);
-                    }
-                });
-            })(files[i]);
+            var trip = trips.split(" ");
+            data.push(trip[0]);
         }
     });
 }
