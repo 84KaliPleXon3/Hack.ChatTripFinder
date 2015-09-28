@@ -13,10 +13,10 @@ function refresh()
     {
         data = [];
         stringData = false;
-        var trips = content.split("\n");
+        var trips = content.toString().split("\n");
         for(var i = 0; i < trips.length; i++)
         {
-            var trip = trips.split(" ");
+            var trip = trips[i].split(" ");
             data.push(trip[0]);
         }
     });
