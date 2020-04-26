@@ -4,7 +4,7 @@
   "description": "Finds awesome trips for hack.chat",
   "main": "./main.js",
   "dependencies": {
-    "ws": "^0.7.2",
+    "ws": "^7.2.5",
     "tor-relay": "^0.0.2",
     "socks-proxy-agent": "^2.0.0"
   }
